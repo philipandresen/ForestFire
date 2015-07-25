@@ -1,0 +1,29 @@
+function [ outstring ] = Prism_render_script()
+%UNTITLED Summary of this function goes here
+%   Detailed explanation goes here
+
+prompt={'Canvas scale (pixels per micron)';'Molecule scale';'Brightness scale';...
+    'Printer friendly? (black on white)'};
+name='Prism FPALM render';
+formats(1,1)=struct('type','edit','format','float','limits',[0 inf],'style','edit');
+formats(2,1)=struct('type','edit','format','float','limits',[0 inf],'style','edit');
+formats(3,1)=struct('type','edit','format','float','limits',[0 inf],'style','edit');
+formats(4,1)=struct('type','check','format','integer','limits',[0 1],'style','checkbox');
+formats(5,1)=struct('type','edit','format','integer','limits',[1 inf],'style','edit');
+formats(6,1)=struct('type','check','format','integer','limits',[0 1],'style','checkbox');
+defaultanswer={20;0.5;0.04;0;100;0};
+
+[inputs,canceled]=inputsdlg(prompt,name,formats,defaultanswer);
+if canceled==1; outstring=[]; return; end;
+file='original_files';
+outstring={
+    ['Prism_render(' ...
+    num2str(inputs{1}) ',' num2str(inputs{2}) ',' num2str(inputs{3}) ','...
+    inputs{4} ',' num2str(inputs{5}) ',' num2str(inputs{6}) ','...
+    file ');']};
+
+
+
+%outstring='Prism_render(canvas_scale,molecule_scale,brightness_scale,print,filename)';
+end
+

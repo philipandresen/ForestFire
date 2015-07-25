@@ -1,0 +1,1 @@
+There are functions used by my software that are not public domain. As such they have been removed.
